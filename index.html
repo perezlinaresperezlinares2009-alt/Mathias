@@ -1,17 +1,74 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sensi Elite PRO</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sensi Elite PRO</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(180deg, #0b1220, #1e2a47);
-      color: white;
-    }
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: linear-gradient(180deg, #0b1220, #1a2a4f);
+    color: white;
+}
 
-    .header {
-      padding: 20px;
+.header {
+    padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.search {
+    margin: 10px 20px;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    width: calc(100% - 40px);
+}
+
+.section {
+    padding: 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.card {
+    background: #2d3e70;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">📱 Sensi Elite PRO</div>
+
+<input class="search" placeholder="Buscar...">
+
+<div class="section">
+🔥 Más recomendado
+<div class="grid">
+<div class="card">Sensi Freestyle</div>
+<div class="card">Sensi Suprema</div>
+<div class="card">Sensibilidad L-Gang</div>
+<div class="card">Sensi Panel</div>
+</div>
+</div>
+
+<div class="section">
+🎓 Elección del aprendiz
+<div class="grid">
+<div class="card">Configuración PRO</div>
+<div class="card">Ajustes Avanzados</div>
+</div>
+</div>
+
+</body>
+</html>
