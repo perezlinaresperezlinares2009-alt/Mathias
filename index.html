@@ -20,15 +20,6 @@ body {
     font-weight: bold;
 }
 
-/* BUSCADOR */
-.search {
-    margin: 10px 20px;
-    padding: 12px;
-    border-radius: 10px;
-    border: none;
-    width: calc(100% - 40px);
-}
-
 /* GRID */
 .grid {
     display: grid;
@@ -43,38 +34,36 @@ body {
     border-radius: 15px;
     text-align: center;
     font-weight: bold;
+    cursor: pointer;
 }
 
-/* LINK INVISIBLE */
-.card a {
-    text-decoration: none;
-    color: white;
-    display: block;
-}
-
-/* SECCIÓN SENSI */
+/* SECCIÓN SENSI (OCULTA) */
 .sensi {
+    display: none;
     padding: 20px;
 }
 
-.title a {
-    text-decoration: none;
-    color: white;
+/* BOTÓN VOLVER */
+.back {
+    margin-bottom: 15px;
+    color: #00e0ff;
+    cursor: pointer;
 }
 
+/* TÍTULO */
 .title {
     font-size: 22px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
 /* ITEMS */
 .item {
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 }
 
 .label {
-    font-size: 13px;
+    font-size: 14px;
     color: #aaa;
 }
 
@@ -83,7 +72,7 @@ body {
     height: 6px;
     background: #333;
     border-radius: 10px;
-    margin-top: 5px;
+    margin-top: 6px;
 }
 
 .fill {
@@ -95,7 +84,6 @@ body {
 .value {
     float: right;
     margin-top: -18px;
-    font-size: 13px;
 }
 </style>
 </head>
@@ -104,28 +92,21 @@ body {
 
 <div class="header">SENSI ELITE 🔥</div>
 
-<input class="search" placeholder="Buscar...">
-
-<div class="grid">
-    <div class="card">
-        <a href="https://link1.com">Sensi Freestyle</a>
-    </div>
-
+<!-- MENÚ -->
+<div class="grid" id="menu">
+    <div class="card" onclick="mostrar('freestyle')">Sensi Freestyle</div>
     <div class="card">Sensi Suprema</div>
-
     <div class="card">Sensibilidad L-Gang</div>
-
-    <!-- LINK INVISIBLE EN SENSI PANEL -->
-    <div class="card">
-        <a href="https://link2.com">Sensi Panel</a>
-    </div>
+    <div class="card" onclick="mostrar('panel')">Sensi Panel</div>
 </div>
 
-<!-- SECCIÓN FREESTYLE -->
-<div class="sensi">
-    <div class="title">
-        🔥 <a href="https://link1.com">Sensi Freestyle</a>
-    </div>
+<!-- CONTENIDO (AMBOS JUNTOS COMO TU IMAGEN) -->
+<div class="sensi" id="contenido">
+
+    <div class="back" onclick="volver()">⬅ Volver</div>
+
+    <!-- FREESTYLE -->
+    <div class="title">🔥 Sensi Freestyle</div>
 
     <div class="item">
         <div class="label">General</div>
@@ -162,13 +143,9 @@ body {
         <div class="bar"><div class="fill" style="width:1%"></div></div>
         <div class="value">1</div>
     </div>
-</div>
 
-<!-- SECCIÓN PANEL (NUEVA ABAJO) -->
-<div class="sensi">
-    <div class="title">
-        🔥 <a href="https://link2.com">Sensi Panel</a>
-    </div>
+    <!-- PANEL -->
+    <div class="title">🔥 Sensi Panel</div>
 
     <div class="item">
         <div class="label">General</div>
@@ -205,7 +182,20 @@ body {
         <div class="bar"><div class="fill" style="width:90%"></div></div>
         <div class="value">180</div>
     </div>
+
 </div>
+
+<script>
+function mostrar() {
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("contenido").style.display = "block";
+}
+
+function volver() {
+    document.getElementById("menu").style.display = "grid";
+    document.getElementById("contenido").style.display = "none";
+}
+</script>
 
 </body>
 </html>
