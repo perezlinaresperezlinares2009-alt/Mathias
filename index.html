@@ -43,7 +43,13 @@ body {
     border-radius: 15px;
     text-align: center;
     font-weight: bold;
-    cursor: pointer;
+}
+
+/* LINK INVISIBLE */
+.card a {
+    text-decoration: none;
+    color: white;
+    display: block;
 }
 
 /* SECCIÓN SENSI */
@@ -51,7 +57,6 @@ body {
     padding: 20px;
 }
 
-/* LINK INVISIBLE SOLO EN TEXTO */
 .title a {
     text-decoration: none;
     color: white;
@@ -102,56 +107,104 @@ body {
 <input class="search" placeholder="Buscar...">
 
 <div class="grid">
-    <div class="card">Sensi Freestyle</div>
+    <div class="card">
+        <a href="https://link1.com">Sensi Freestyle</a>
+    </div>
+
     <div class="card">Sensi Suprema</div>
+
     <div class="card">Sensibilidad L-Gang</div>
-    <div class="card">Sensi Panel</div>
+
+    <!-- LINK INVISIBLE EN SENSI PANEL -->
+    <div class="card">
+        <a href="https://link2.com">Sensi Panel</a>
+    </div>
 </div>
 
-<!-- SECCIÓN COMBINADA -->
+<!-- SECCIÓN FREESTYLE -->
 <div class="sensi">
-
-    <!-- LINK INVISIBLE AQUÍ -->
     <div class="title">
-        🔥 <a href="https://tupagina.com">Sensi Freestyle</a>
+        🔥 <a href="https://link1.com">Sensi Freestyle</a>
     </div>
 
     <div class="item">
         <div class="label">General</div>
-        <div class="bar"><div class="fill" style="width:87%"></div></div>
-        <div class="value">175</div>
+        <div class="bar"><div class="fill" style="width:90%"></div></div>
+        <div class="value">180</div>
     </div>
 
     <div class="item">
         <div class="label">Punto rojo</div>
-        <div class="bar"><div class="fill" style="width:43%"></div></div>
-        <div class="value">86</div>
+        <div class="bar"><div class="fill" style="width:75%"></div></div>
+        <div class="value">152</div>
     </div>
 
     <div class="item">
         <div class="label">Mira 2x</div>
-        <div class="bar"><div class="fill" style="width:85%"></div></div>
-        <div class="value">171</div>
+        <div class="bar"><div class="fill" style="width:100%"></div></div>
+        <div class="value">200</div>
     </div>
 
     <div class="item">
         <div class="label">Mira 4x</div>
-        <div class="bar"><div class="fill" style="width:82%"></div></div>
-        <div class="value">165</div>
+        <div class="bar"><div class="fill" style="width:62%"></div></div>
+        <div class="value">125</div>
     </div>
 
     <div class="item">
-        <div class="label">Mira de franco</div>
-        <div class="bar"><div class="fill" style="width:79%"></div></div>
-        <div class="value">158</div>
+        <div class="label">Mira francotirador</div>
+        <div class="bar"><div class="fill" style="width:0%"></div></div>
+        <div class="value">0</div>
     </div>
 
     <div class="item">
         <div class="label">Free Camera</div>
-        <div class="bar"><div class="fill" style="width:87%"></div></div>
-        <div class="value">174</div>
+        <div class="bar"><div class="fill" style="width:1%"></div></div>
+        <div class="value">1</div>
+    </div>
+</div>
+
+<!-- SECCIÓN PANEL (NUEVA ABAJO) -->
+<div class="sensi">
+    <div class="title">
+        🔥 <a href="https://link2.com">Sensi Panel</a>
     </div>
 
+    <div class="item">
+        <div class="label">General</div>
+        <div class="bar"><div class="fill" style="width:88%"></div></div>
+        <div class="value">176</div>
+    </div>
+
+    <div class="item">
+        <div class="label">Punto rojo</div>
+        <div class="bar"><div class="fill" style="width:80%"></div></div>
+        <div class="value">160</div>
+    </div>
+
+    <div class="item">
+        <div class="label">Mira 2x</div>
+        <div class="bar"><div class="fill" style="width:95%"></div></div>
+        <div class="value">190</div>
+    </div>
+
+    <div class="item">
+        <div class="label">Mira 4x</div>
+        <div class="bar"><div class="fill" style="width:85%"></div></div>
+        <div class="value">170</div>
+    </div>
+
+    <div class="item">
+        <div class="label">Mira francotirador</div>
+        <div class="bar"><div class="fill" style="width:70%"></div></div>
+        <div class="value">140</div>
+    </div>
+
+    <div class="item">
+        <div class="label">Free Camera</div>
+        <div class="bar"><div class="fill" style="width:90%"></div></div>
+        <div class="value">180</div>
+    </div>
 </div>
 
 </body>
