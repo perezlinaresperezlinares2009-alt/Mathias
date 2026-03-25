@@ -2,161 +2,133 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SENSI ELITE 🔥</title>
+<title>SENSI ELITE</title>
 
 <style>
 body{
     margin:0;
-    font-family:Arial;
-    background:#0b1622;
+    font-family:sans-serif;
+    background:#071421;
     color:white;
 }
 
+/* TITULO */
 h1{
     text-align:center;
     margin:20px;
 }
 
+/* GRID BOTONES */
 .grid{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:15px;
-    padding:20px;
+    padding:15px;
 }
 
 .btn{
-    background:#1c2a3a;
-    padding:15px;
-    border-radius:15px;
+    background:#1c2b3a;
+    padding:20px;
+    border-radius:20px;
     text-align:center;
-    cursor:pointer;
+    font-size:18px;
 }
 
-/* MODAL */
-.modal{
-    display:none;
+/* PANEL OVERLAY */
+.overlay{
     position:fixed;
     top:0;
     left:0;
     width:100%;
     height:100%;
     background:rgba(0,0,0,0.7);
+    display:none;
+    justify-content:center;
+    align-items:center;
 }
 
-.modal-content{
-    background:#101c2c;
-    margin:50px auto;
-    padding:20px;
-    border-radius:15px;
+/* PANEL */
+.panel{
     width:90%;
     max-width:400px;
+    background:#102030;
+    border-radius:20px;
+    padding:20px;
 }
 
-.slider{
-    margin:10px 0;
+.panel h2{
+    margin-bottom:15px;
+}
+
+/* SLIDERS */
+input[type=range]{
+    width:100%;
+}
+
+/* BOTON */
+.guardar{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:#19a7ce;
+    color:white;
+    font-size:16px;
+    margin-top:15px;
 }
 </style>
-
 </head>
+
 <body>
 
 <h1>SENSI ELITE 🔥</h1>
 
 <div class="grid">
-
-<div class="btn" onclick="openSensi('dragon')">🐉 Dragon Headshot</div>
-<div class="btn" onclick="openSensi('demon')">😈 Demon Aimlock</div>
-<div class="btn" onclick="openSensi('ghost')">👻 Ghost Precision</div>
-<div class="btn" onclick="openSensi('toxic')">☠️ Toxic Destroyer</div>
-
-<div class="btn" onclick="openSensi('lgang')">🔥 L-Gang Pro</div>
-<div class="btn" onclick="openSensi('freestyle')">🎯 Freestyle God</div>
-<div class="btn" onclick="openSensi('suprema')">⚡ Suprema Ultra</div>
-<div class="btn" onclick="openSensi('panel')">🧠 Panel Hacker</div>
-
-<div class="btn" onclick="openSensi('insana')">👹 Insana Max</div>
-<div class="btn" onclick="openSensi('motorola')">📱 Motorola Pro</div>
-<div class="btn" onclick="openSensi('hz')">⚙️ HZ Pro</div>
-<div class="btn" onclick="openSensi('xiaomi')">📲 Xiaomi Killer</div>
-
-<div class="btn" onclick="openSensi('p90')">🔫 P90 Destroyer</div>
-
+    <div class="btn" onclick="abrirPanel()">🐉 Dragon Headshot</div>
+    <div class="btn" onclick="abrirPanel()">😈 Demon Aimlock</div>
+    <div class="btn" onclick="abrirPanel()">👻 Ghost Precision</div>
+    <div class="btn" onclick="abrirPanel()">☠️ Toxic Destroyer</div>
 </div>
 
-<!-- MODAL -->
-<div class="modal" id="modal" onclick="closeModal(event)">
-<div class="modal-content" id="content"></div>
+<!-- PANEL -->
+<div id="overlay" class="overlay" onclick="cerrarPanel(event)">
+    <div class="panel">
+
+        <h2>Ajustes de sensibilidad</h2>
+
+        <p>General: <span id="g">173</span></p>
+        <input type="range" min="0" max="200" value="173" oninput="g.innerText=this.value">
+
+        <p>Punto rojo: <span id="p">147</span></p>
+        <input type="range" min="0" max="200" value="147" oninput="p.innerText=this.value">
+
+        <p>Mira 2x: <span id="m2">128</span></p>
+        <input type="range" min="0" max="200" value="128" oninput="m2.innerText=this.value">
+
+        <p>Mira 4x: <span id="m4">185</span></p>
+        <input type="range" min="0" max="200" value="185" oninput="m4.innerText=this.value">
+
+        <p>Mira Franco: <span id="mf">45</span></p>
+        <input type="range" min="0" max="200" value="45" oninput="mf.innerText=this.value">
+
+        <p>Cámara Libre: <span id="cl">0</span></p>
+        <input type="range" min="0" max="200" value="0" oninput="cl.innerText=this.value">
+
+        <button class="guardar">Guardar Configuración</button>
+
+    </div>
 </div>
 
 <script>
-
-function openSensi(tipo){
-
-let data = {
-
-dragon:[173,147,128,185,45,0,525,37],
-demon:[200,120,160,160,46,0,0,90],
-ghost:[70,88,90,100,50,100,410,1],
-toxic:[139,0,190,15,1,100,560,56],
-
-lgang:[180,150,130,170,50,0,500,40],
-freestyle:[190,140,150,180,60,0,480,45],
-suprema:[200,160,170,190,70,0,600,50],
-panel:[160,130,120,150,40,0,450,35],
-
-insana:[200,120,160,160,46,0,0,90],
-motorola:[70,88,90,100,50,100,410,1],
-hz:[139,0,190,15,1,100,560,56],
-xiaomi:[171,164,186,158,175,52,555,45],
-p90:[178,152,174,174,100,160,350,40]
-
-};
-
-let s = data[tipo];
-
-document.getElementById("content").innerHTML = `
-<h2>Ajustes de sensibilidad</h2>
-
-<div>General: ${s[0]}</div>
-<input type="range" value="${s[0]}" class="slider">
-
-<div>Punto rojo: ${s[1]}</div>
-<input type="range" value="${s[1]}" class="slider">
-
-<div>Mira 2x: ${s[2]}</div>
-<input type="range" value="${s[2]}" class="slider">
-
-<div>Mira 4x: ${s[3]}</div>
-<input type="range" value="${s[3]}" class="slider">
-
-<div>Mira Franco: ${s[4]}</div>
-<input type="range" value="${s[4]}" class="slider">
-
-<div>Cámara Libre: ${s[5]}</div>
-<input type="range" value="${s[5]}" class="slider">
-
-<br>
-
-<div>DPI: ${s[6]}</div>
-<div>Tamaño botón: ${s[7]}</div>
-
-<br>
-
-<button style="width:100%;padding:10px;border-radius:10px;background:#00c2ff;border:none;color:white;">
-Guardar Configuración
-</button>
-`;
-
-document.getElementById("modal").style.display="block";
+function abrirPanel(){
+    document.getElementById("overlay").style.display="flex";
 }
 
-function closeModal(e){
-if(e.target.id==="modal"){
-document.getElementById("modal").style.display="none";
+function cerrarPanel(e){
+    if(e.target.id === "overlay"){
+        document.getElementById("overlay").style.display="none";
+    }
 }
-}
-
 </script>
 
 </body>
