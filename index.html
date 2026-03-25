@@ -9,13 +9,25 @@ body {
     background: #0b1220;
     color: white;
     font-family: Arial;
-    text-align: center;
     margin: 0;
 }
 
-/* BLOQUEAR SCROLL */
-body.modal-abierto {
-    overflow: hidden;
+/* CONTENIDO PRINCIPAL */
+.container {
+    padding: 20px;
+}
+
+h1 {
+    margin-bottom: 15px;
+}
+
+/* BUSCADOR */
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 20px;
 }
 
 /* BOTONES */
@@ -23,7 +35,6 @@ body.modal-abierto {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
-    padding: 20px;
 }
 
 button {
@@ -40,16 +51,9 @@ button {
 .fondo {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: rgba(0,0,0,0.6);
     z-index: 999;
-}
-
-.fondo.activo {
-    display: block;
 }
 
 /* MODAL */
@@ -69,37 +73,35 @@ button {
     padding: 20px;
     border-radius: 15px;
 
-    box-shadow: 0 0 25px rgba(0,0,0,0.7);
     z-index: 1000;
 }
 
+/* ACTIVAR */
 .activo {
     display: block;
-}
-
-/* TITULO */
-h1 {
-    margin-top: 20px;
 }
 </style>
 </head>
 
 <body>
 
-<h1>SENSI ELITE 🔥</h1>
+<div class="container">
+    <h1>SENSI ELITE 🔥</h1>
 
-<div class="botones">
-    <button onclick="mostrar('free')">Sensi Freestyle</button>
-    <button onclick="mostrar('suprema')">Sensi Suprema</button>
-    <button onclick="mostrar('lgang')">Sensibilidad L-Gang</button>
-    <button onclick="mostrar('panel')">Sensi Panel</button>
+    <input type="text" placeholder="Buscar...">
+
+    <div class="botones">
+        <button onclick="mostrar('free')">Sensi Freestyle</button>
+        <button onclick="mostrar('suprema')">Sensi Suprema</button>
+        <button onclick="mostrar('lgang')">Sensibilidad L-Gang</button>
+        <button onclick="mostrar('panel')">Sensi Panel</button>
+    </div>
 </div>
 
 <!-- FONDO -->
 <div id="fondo" class="fondo" onclick="cerrar()"></div>
 
-<!-- CONTENIDO -->
-
+<!-- MODALES -->
 <div id="free" class="sensi">
     <h3>🔥 Freestyle</h3>
     <p>General: 180</p>
@@ -127,36 +129,21 @@ h1 {
 </div>
 
 <script>
-let actual = null;
-
 function mostrar(id) {
-    const fondo = document.getElementById("fondo");
-
-    if (actual === id) {
-        cerrar();
-        return;
-    }
-
     document.querySelectorAll('.sensi').forEach(div => {
-        div.classList.remove('activo');
+        div.style.display = 'none';
     });
 
-    document.getElementById(id).classList.add('activo');
-    fondo.classList.add('activo');
-    document.body.classList.add('modal-abierto');
-
-    actual = id;
+    document.getElementById(id).style.display = 'block';
+    document.getElementById("fondo").style.display = 'block';
 }
 
 function cerrar() {
     document.querySelectorAll('.sensi').forEach(div => {
-        div.classList.remove('activo');
+        div.style.display = 'none';
     });
 
-    document.getElementById("fondo").classList.remove('activo');
-    document.body.classList.remove('modal-abierto');
-
-    actual = null;
+    document.getElementById("fondo").style.display = 'none';
 }
 </script>
 
