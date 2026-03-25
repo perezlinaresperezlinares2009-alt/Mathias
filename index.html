@@ -7,39 +7,90 @@
 
 <style>
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0b1220;
-  color: white;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0b1220;
+    color: white;
 }
 
+/* HEADER */
 .header {
-  padding: 20px;
-  font-size: 24px;
-  font-weight: bold;
+    padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
 }
 
+/* BUSCADOR */
 .search {
-  margin: 10px 20px;
-  padding: 12px;
-  border-radius: 10px;
-  border: none;
-  width: calc(100% - 40px);
+    margin: 10px 20px;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    width: calc(100% - 40px);
 }
 
+/* GRID */
 .grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-  padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    padding: 20px;
 }
 
 .card {
-  background: #1e293b;
-  padding: 20px;
-  border-radius: 15px;
-  text-align: center;
-  font-weight: bold;
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* SECCIÓN SENSI */
+.sensi {
+    padding: 20px;
+}
+
+/* LINK INVISIBLE SOLO EN TEXTO */
+.title a {
+    text-decoration: none;
+    color: white;
+}
+
+.title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* ITEMS */
+.item {
+    margin-bottom: 18px;
+}
+
+.label {
+    font-size: 13px;
+    color: #aaa;
+}
+
+.bar {
+    width: 100%;
+    height: 6px;
+    background: #333;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+.fill {
+    height: 100%;
+    background: #00e0ff;
+    border-radius: 10px;
+}
+
+.value {
+    float: right;
+    margin-top: -18px;
+    font-size: 13px;
 }
 </style>
 </head>
@@ -51,10 +102,56 @@ body {
 <input class="search" placeholder="Buscar...">
 
 <div class="grid">
-  <div class="card">Sensi Freestyle</div>
-  <div class="card">Sensi Suprema</div>
-  <div class="card">Sensibilidad L-Gang</div>
-  <div class="card">Sensi Panel</div>
+    <div class="card">Sensi Freestyle</div>
+    <div class="card">Sensi Suprema</div>
+    <div class="card">Sensibilidad L-Gang</div>
+    <div class="card">Sensi Panel</div>
+</div>
+
+<!-- SECCIÓN COMBINADA -->
+<div class="sensi">
+
+    <!-- LINK INVISIBLE AQUÍ -->
+    <div class="title">
+        🔥 <a href="https://tupagina.com">Sensi Freestyle</a>
+    </div>
+
+    <div class="item">
+        <div class="label">General</div>
+        <div class="bar"><div class="fill" style="width:87%"></div></div>
+        <div class="value">175</div>
+    </div>
+
+    <div class="item">
+        <div class="label">Punto rojo</div>
+        <div class="bar"><div class="fill" style="width:43%"></div></div>
+        <div class="value">86</div>
+    </div>
+
+    <div class="item">
+        <div class="label">Mira 2x</div>
+        <div class="bar"><div class="fill" style="width:85%"></div></div>
+        <div class="value">171</div>
+    </div>
+
+    <div class="item">
+        <div class="label">Mira 4x</div>
+        <div class="bar"><div class="fill" style="width:82%"></div></div>
+        <div class="value">165</div>
+    </div>
+
+    <div class="item">
+        <div class="label">Mira de franco</div>
+        <div class="bar"><div class="fill" style="width:79%"></div></div>
+        <div class="value">158</div>
+    </div>
+
+    <div class="item">
+        <div class="label">Free Camera</div>
+        <div class="bar"><div class="fill" style="width:87%"></div></div>
+        <div class="value">174</div>
+    </div>
+
 </div>
 
 </body>
