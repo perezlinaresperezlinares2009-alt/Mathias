@@ -2,20 +2,39 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>SENSI ELITE</title>
+<title>GG SENSI</title>
 
 <style>
 body{
     margin:0;
     font-family:sans-serif;
-    background:#071421;
+    background:linear-gradient(#071421,#0b1f33);
     color:white;
 }
 
-/* TITULO */
-h1{
-    text-align:center;
-    margin:20px;
+/* HEADER */
+.header{
+    padding:20px;
+    font-size:24px;
+    font-weight:bold;
+}
+
+/* TOP MENU */
+.top{
+    display:flex;
+    gap:10px;
+    padding:10px;
+}
+
+.top div{
+    padding:10px 15px;
+    border-radius:20px;
+    background:#1c2b3a;
+    cursor:pointer;
+}
+
+.activo{
+    background:#19a7ce !important;
 }
 
 /* GRID */
@@ -32,6 +51,18 @@ h1{
     border-radius:20px;
     text-align:center;
     font-size:16px;
+    transition:0.2s;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+/* LOADING */
+.loading{
+    display:none;
+    text-align:center;
+    margin-top:100px;
 }
 
 /* OVERLAY */
@@ -54,6 +85,12 @@ h1{
     background:#102030;
     border-radius:20px;
     padding:20px;
+    animation:fade 0.3s;
+}
+
+@keyframes fade{
+    from{transform:scale(0.8);opacity:0;}
+    to{transform:scale(1);opacity:1;}
 }
 
 input{
@@ -67,42 +104,62 @@ button{
     border-radius:10px;
     background:#19a7ce;
     color:white;
-    margin-top:15px;
+    margin-top:10px;
+}
+
+/* BOTON + */
+.fab{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#19a7ce;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    font-size:30px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 </style>
 </head>
 
 <body>
 
-<h1>SENSI ELITE 🔥</h1>
+<div class="header">GG SENSI 🔥</div>
 
-<div class="grid">
-<div class="btn" onclick="abrirPanel('dragon')">🐉 Dragon Headshot</div>
-<div class="btn" onclick="abrirPanel('demon')">😈 Demon Aimlock</div>
+<!-- MENU -->
+<div class="top">
+<div class="activo" onclick="cambiar('top')">🔥 Top</div>
+<div onclick="cambiar('guardados')">💾 Guardados</div>
+<div onclick="cambiar('vip')">👑 VIP</div>
+</div>
 
-<div class="btn" onclick="abrirPanel('ghost')">👻 Ghost Precision</div>
-<div class="btn" onclick="abrirPanel('toxic')">☠️ Toxic Destroyer</div>
+<!-- CONTENIDO -->
+<div id="top" class="grid">
+<div class="btn" onclick="abrirPanel('dragon')">🐉 Dragon</div>
+<div class="btn" onclick="abrirPanel('demon')">😈 Demon</div>
+<div class="btn" onclick="abrirPanel('ghost')">👻 Ghost</div>
+<div class="btn" onclick="abrirPanel('toxic')">☠️ Toxic</div>
+</div>
 
-<div class="btn" onclick="abrirPanel('lgang')">🔥 L-Gang Pro</div>
-<div class="btn" onclick="abrirPanel('free')">🎯 Freestyle God</div>
+<div id="guardados" class="grid" style="display:none"></div>
 
-<div class="btn" onclick="abrirPanel('suprema')">⚡ Suprema Ultra</div>
-<div class="btn" onclick="abrirPanel('panel')">🧠 Panel Hacker</div>
+<div id="vip" class="grid" style="display:none">
+<div class="btn" onclick="abrirPanel('insana')">👹 Insana VIP</div>
+<div class="btn" onclick="abrirPanel('suprema')">⚡ Suprema VIP</div>
+</div>
 
-<div class="btn" onclick="abrirPanel('insana')">👹 Insana Max</div>
-<div class="btn" onclick="abrirPanel('moto')">📱 Motorola Pro</div>
-
-<div class="btn" onclick="abrirPanel('hz')">⚙️ HZ Pro</div>
-<div class="btn" onclick="abrirPanel('xiaomi')">➡️ Xiaomi Killer</div>
-
-<div class="btn" onclick="abrirPanel('p90')">🔫 P90 Destroyer</div>
+<!-- LOADING -->
+<div class="loading" id="loading">
+<h2>Cargando configuración...</h2>
 </div>
 
 <!-- PANEL -->
 <div id="overlay" class="overlay" onclick="cerrarPanel(event)">
 <div class="panel">
 
-<h2>Ajustes de sensibilidad</h2>
+<h2>Ajustes GG</h2>
 
 <p>General: <span id="g"></span></p>
 <input type="range" min="0" max="200" oninput="g.innerText=this.value">
@@ -122,48 +179,79 @@ button{
 <p>Cámara Libre: <span id="cl"></span></p>
 <input type="range" min="0" max="200" oninput="cl.innerText=this.value">
 
-<button>Guardar Configuración</button>
+<button onclick="guardar()">💾 Guardar</button>
 
 </div>
 </div>
+
+<!-- BOTON + -->
+<div class="fab" onclick="alert('Próximamente crear tu propia sensi 😎')">+</div>
 
 <script>
 
-// CONFIGURACIONES
 const configs = {
 dragon:[173,147,128,185,45,0],
 demon:[160,140,120,170,50,10],
 ghost:[180,150,130,190,40,5],
 toxic:[165,135,125,175,60,15],
-lgang:[170,145,135,180,55,10],
-free:[175,155,140,185,50,5],
-suprema:[190,160,150,200,60,20],
-panel:[150,130,110,160,45,0],
 insana:[185,165,145,195,55,10],
-moto:[140,120,100,150,40,0],
-hz:[155,135,115,165,50,5],
-xiaomi:[145,125,105,155,45,0],
-p90:[200,180,160,200,70,20]
+suprema:[190,160,150,200,60,20]
 };
 
+let actual="";
+
+// ABRIR PANEL
 function abrirPanel(tipo){
-let c = configs[tipo];
+actual=tipo;
 
-let sliders = document.querySelectorAll("input");
+loading.style.display="block";
 
-g.innerText=c[0]; sliders[0].value=c[0];
-p.innerText=c[1]; sliders[1].value=c[1];
-m2.innerText=c[2]; sliders[2].value=c[2];
-m4.innerText=c[3]; sliders[3].value=c[3];
-mf.innerText=c[4]; sliders[4].value=c[4];
-cl.innerText=c[5]; sliders[5].value=c[5];
+setTimeout(()=>{
+loading.style.display="none";
 
-document.getElementById("overlay").style.display="flex";
+let c=configs[tipo];
+let s=document.querySelectorAll("input");
+
+g.innerText=c[0]; s[0].value=c[0];
+p.innerText=c[1]; s[1].value=c[1];
+m2.innerText=c[2]; s[2].value=c[2];
+m4.innerText=c[3]; s[3].value=c[3];
+mf.innerText=c[4]; s[4].value=c[4];
+cl.innerText=c[5]; s[5].value=c[5];
+
+overlay.style.display="flex";
+
+},800);
 }
 
+// GUARDAR
+function guardar(){
+let data = JSON.parse(localStorage.getItem("ggsensi")) || [];
+data.push(actual);
+localStorage.setItem("ggsensi", JSON.stringify(data));
+alert("Guardado en GG SENSI 🔥");
+}
+
+// CAMBIAR TAB
+function cambiar(tab){
+document.querySelectorAll(".grid").forEach(e=>e.style.display="none");
+document.getElementById(tab).style.display="grid";
+
+if(tab==="guardados"){
+let data = JSON.parse(localStorage.getItem("ggsensi")) || [];
+let cont = document.getElementById("guardados");
+cont.innerHTML="";
+
+data.forEach(s=>{
+cont.innerHTML+=`<div class="btn" onclick="abrirPanel('${s}')">⭐ ${s}</div>`;
+});
+}
+}
+
+// CERRAR
 function cerrarPanel(e){
 if(e.target.id==="overlay"){
-document.getElementById("overlay").style.display="none";
+overlay.style.display="none";
 }
 }
 
