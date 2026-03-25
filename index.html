@@ -1,23 +1,56 @@
-<script>
-let actual = null;
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Sensi Elite</title>
 
-function mostrar(id) {
-    const seleccionado = document.getElementById(id);
-
-    // Si ya está abierto, lo cerramos
-    if (actual === id) {
-        seleccionado.classList.remove('activo');
-        actual = null;
-        return;
-    }
-
-    // Ocultar todos
-    document.querySelectorAll('.sensi').forEach(div => {
-        div.classList.remove('activo');
-    });
-
-    // Mostrar el nuevo
-    seleccionado.classList.add('activo');
-    actual = id;
+<style>
+body {
+    background: #0b1220;
+    color: white;
+    font-family: Arial;
+    text-align: center;
+    margin: 0;
 }
-</script>
+
+/* BOTONES */
+.botones {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 20px;
+}
+
+button {
+    padding: 20px;
+    border-radius: 15px;
+    border: none;
+    background: #1e2a44;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* PANEL FLOTANTE */
+.sensi {
+    display: none;
+    position: fixed;
+    top: 180px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 400px;
+
+    background: #111a2e;
+    padding: 20px;
+    border-radius: 15px;
+
+    box-shadow: 0 0 25px rgba(0,0,0,0.7);
+    z-index: 1000;
+}
+
+.activo {
+    display: block;
+}
+
+/* FON
