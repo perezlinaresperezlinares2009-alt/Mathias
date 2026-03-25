@@ -12,14 +12,12 @@ body{
     color:white;
 }
 
-/* HEADER */
 .header{
     padding:15px;
     font-size:18px;
     font-weight:bold;
 }
 
-/* TABS */
 .tabs{
     display:flex;
     gap:10px;
@@ -33,11 +31,10 @@ body{
     cursor:pointer;
 }
 
-.active{
+.tab.active{
     background:#19a7ce;
 }
 
-/* GRID */
 .grid{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -94,8 +91,8 @@ button{
 <div class="header">GG SENSI 🔥</div>
 
 <div class="tabs">
-<div class="tab active" onclick="mostrar('top')">🔥 Top</div>
-<div class="tab" onclick="mostrar('guardados')">💾 Guardados</div>
+<div class="tab active" onclick="mostrar('top', this)">🔥 Top</div>
+<div class="tab" onclick="mostrar('guardados', this)">💾 Guardados</div>
 <div class="tab" onclick="vip()">👑 VIP</div>
 </div>
 
@@ -113,6 +110,7 @@ button{
 
 </div>
 
+<!-- GUARDADOS -->
 <div id="guardados" class="grid" style="display:none">
 <div class="btn">No tienes guardados</div>
 </div>
@@ -152,16 +150,14 @@ button{
 
 <script>
 
-// 🔥 SENSIBILIDADES TOP (las de tus imágenes)
+// 🔥 SENSIS
 const sensis = {
-
 lince:[145,124,179,162,101,100,300,55],
 marechal:[175,126,158,175,185,171,499,58],
 two9:[195,70,160,181,27,0,500,36],
 santana:[195,173,158,190,22,84,735,61],
 boyka:[200,96,42,68,54,58,450,44],
 ruso:[200,200,173,163,163,159,1500,100]
-
 };
 
 function abrir(tipo){
@@ -187,36 +183,44 @@ panel.style.display="none";
 }
 }
 
-// TABS
-function mostrar(id){
+// CAMBIAR TABS
+function mostrar(id, el){
 top.style.display="none";
 guardados.style.display="none";
 
 document.getElementById(id).style.display="grid";
+
+// quitar active
+document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+el.classList.add("active");
 }
 
-// 🔐 VIP CON 3 INTENTOS
+// 🔐 VIP CORREGIDO
 function vip(){
 
 let hoy = new Date().toDateString();
 
+// reinicio diario
 if(localStorage.fecha !== hoy){
-localStorage.intentos = 3;
-localStorage.fecha = hoy;
+    localStorage.intentos = 3;
+    localStorage.fecha = hoy;
 }
 
-if(localStorage.intentos <= 0){
-alert("❌ Sin intentos hoy");
-return;
+let intentos = parseInt(localStorage.intentos) || 3;
+
+if(intentos <= 0){
+    alert("❌ Sin intentos hoy");
+    return;
 }
 
-let pass = prompt("Contraseña VIP:");
+let pass = prompt("🔐 Ingresa contraseña VIP:");
 
 if(pass === "44400978"){
-alert("✅ Bienvenido VIP");
+    alert("✅ Bienvenido VIP 🔥");
 }else{
-localStorage.intentos--;
-alert("❌ Incorrecta | Intentos: " + localStorage.intentos);
+    intentos--;
+    localStorage.intentos = intentos;
+    alert("❌ Incorrecta | Intentos restantes: " + intentos);
 }
 }
 
