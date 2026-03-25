@@ -2,85 +2,83 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sensi Elite</title>
 
 <style>
-body {
-    background: #0b1220;
-    color: white;
+body{
+    margin:0;
     font-family: Arial;
-    margin: 0;
+    background:#0b1220;
+    color:white;
 }
 
-/* CONTENIDO PRINCIPAL */
-.container {
-    padding: 20px;
+/* CONTENEDOR */
+.container{
+    padding:20px;
 }
 
-h1 {
-    margin-bottom: 15px;
+/* TITULO */
+h1{
+    margin-bottom:15px;
 }
 
 /* BUSCADOR */
-input {
-    width: 100%;
-    padding: 12px;
-    border-radius: 10px;
-    border: none;
-    margin-bottom: 20px;
+input{
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    border:none;
+    margin-bottom:20px;
 }
 
 /* BOTONES */
-.botones {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+.botones{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
 }
 
-button {
-    padding: 20px;
-    border-radius: 15px;
-    border: none;
-    background: #1e2a44;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
+button{
+    padding:20px;
+    border:none;
+    border-radius:15px;
+    background:#1e2a44;
+    color:white;
+    font-size:16px;
 }
 
 /* FONDO OSCURO */
-.fondo {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.6);
-    z-index: 999;
+#fondo{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
 }
 
 /* MODAL */
-.sensi {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    
-    width: 90%;
-    max-width: 400px;
-    max-height: 70vh;
-    overflow-y: auto;
-
-    background: #111a2e;
-    padding: 20px;
-    border-radius: 15px;
-
-    z-index: 1000;
+.sensi{
+    display:none;
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:90%;
+    max-width:350px;
+    background:#111a2e;
+    padding:20px;
+    border-radius:15px;
 }
 
-/* ACTIVAR */
-.activo {
-    display: block;
+/* TEXTO */
+.sensi h3{
+    margin-top:0;
 }
 </style>
+
 </head>
 
 <body>
@@ -91,15 +89,15 @@ button {
     <input type="text" placeholder="Buscar...">
 
     <div class="botones">
-        <button onclick="mostrar('free')">Sensi Freestyle</button>
-        <button onclick="mostrar('suprema')">Sensi Suprema</button>
-        <button onclick="mostrar('lgang')">Sensibilidad L-Gang</button>
-        <button onclick="mostrar('panel')">Sensi Panel</button>
+        <button onclick="abrir('free')">Sensi Freestyle</button>
+        <button onclick="abrir('suprema')">Sensi Suprema</button>
+        <button onclick="abrir('lgang')">Sensibilidad L-Gang</button>
+        <button onclick="abrir('panel')">Sensi Panel</button>
     </div>
 </div>
 
 <!-- FONDO -->
-<div id="fondo" class="fondo" onclick="cerrar()"></div>
+<div id="fondo" onclick="cerrar()"></div>
 
 <!-- MODALES -->
 <div id="free" class="sensi">
@@ -129,21 +127,23 @@ button {
 </div>
 
 <script>
-function mostrar(id) {
-    document.querySelectorAll('.sensi').forEach(div => {
-        div.style.display = 'none';
-    });
+function abrir(id){
+    // ocultar todos
+    let sensis = document.querySelectorAll('.sensi');
+    sensis.forEach(s => s.style.display = 'none');
 
+    // mostrar el seleccionado
     document.getElementById(id).style.display = 'block';
-    document.getElementById("fondo").style.display = 'block';
+
+    // mostrar fondo
+    document.getElementById('fondo').style.display = 'block';
 }
 
-function cerrar() {
-    document.querySelectorAll('.sensi').forEach(div => {
-        div.style.display = 'none';
-    });
+function cerrar(){
+    let sensis = document.querySelectorAll('.sensi');
+    sensis.forEach(s => s.style.display = 'none');
 
-    document.getElementById("fondo").style.display = 'none';
+    document.getElementById('fondo').style.display = 'none';
 }
 </script>
 
