@@ -2,198 +2,95 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sensi Elite PRO</title>
+<title>Sensibilidades</title>
 
 <style>
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
     background: #0b1220;
     color: white;
-}
-
-/* HEADER */
-.header {
-    padding: 20px;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-/* GRID */
-.grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    padding: 20px;
-}
-
-.card {
-    background: #1e293b;
-    padding: 20px;
-    border-radius: 15px;
+    font-family: Arial;
     text-align: center;
-    font-weight: bold;
+}
+
+.botones {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 20px;
+}
+
+button {
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    background: #1e2a44;
+    color: white;
+    font-size: 16px;
     cursor: pointer;
 }
 
-/* SECCIÓN SENSI (OCULTA) */
 .sensi {
     display: none;
-    padding: 20px;
-}
-
-/* BOTÓN VOLVER */
-.back {
-    margin-bottom: 15px;
-    color: #00e0ff;
-    cursor: pointer;
-}
-
-/* TÍTULO */
-.title {
-    font-size: 22px;
-    font-weight: bold;
-    margin: 20px 0;
-}
-
-/* ITEMS */
-.item {
-    margin-bottom: 20px;
-}
-
-.label {
-    font-size: 14px;
-    color: #aaa;
-}
-
-.bar {
-    width: 100%;
-    height: 6px;
-    background: #333;
-    border-radius: 10px;
-    margin-top: 6px;
-}
-
-.fill {
-    height: 100%;
-    background: #00e0ff;
+    margin-top: 20px;
+    background: #111a2e;
+    padding: 15px;
     border-radius: 10px;
 }
 
-.value {
-    float: right;
-    margin-top: -18px;
+.activo {
+    display: block;
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">SENSI ELITE 🔥</div>
+<h2>Configuraciones</h2>
 
-<!-- MENÚ -->
-<div class="grid" id="menu">
-    <div class="card" onclick="mostrar('freestyle')">Sensi Freestyle</div>
-    <div class="card">Sensi Suprema</div>
-    <div class="card">Sensibilidad L-Gang</div>
-    <div class="card" onclick="mostrar('panel')">Sensi Panel</div>
+<div class="botones">
+    <button onclick="mostrar('free')">Sensi Freestyle</button>
+    <button onclick="mostrar('suprema')">Sensi Suprema</button>
+    <button onclick="mostrar('lgang')">Sensibilidad L-Gang</button>
+    <button onclick="mostrar('panel')">Sensi Panel</button>
 </div>
 
-<!-- CONTENIDO (AMBOS JUNTOS COMO TU IMAGEN) -->
-<div class="sensi" id="contenido">
+<!-- CONTENIDO -->
 
-    <div class="back" onclick="volver()">⬅ Volver</div>
+<div id="free" class="sensi">
+    <h3>🔥 Freestyle</h3>
+    <p>General: 180</p>
+    <p>Punto rojo: 152</p>
+    <p>Mira 2x: 200</p>
+    <p>Mira 4x: 125</p>
+</div>
 
-    <!-- FREESTYLE -->
-    <div class="title">🔥 Sensi Freestyle</div>
+<div id="suprema" class="sensi">
+    <h3>🔥 Suprema</h3>
+    <p>General: 176</p>
+    <p>Punto rojo: 160</p>
+    <p>Mira 2x: 190</p>
+    <p>Mira 4x: 170</p>
+</div>
 
-    <div class="item">
-        <div class="label">General</div>
-        <div class="bar"><div class="fill" style="width:90%"></div></div>
-        <div class="value">180</div>
-    </div>
+<div id="lgang" class="sensi">
+    <h3>🔥 L-Gang</h3>
+    <p>Config aquí...</p>
+</div>
 
-    <div class="item">
-        <div class="label">Punto rojo</div>
-        <div class="bar"><div class="fill" style="width:75%"></div></div>
-        <div class="value">152</div>
-    </div>
-
-    <div class="item">
-        <div class="label">Mira 2x</div>
-        <div class="bar"><div class="fill" style="width:100%"></div></div>
-        <div class="value">200</div>
-    </div>
-
-    <div class="item">
-        <div class="label">Mira 4x</div>
-        <div class="bar"><div class="fill" style="width:62%"></div></div>
-        <div class="value">125</div>
-    </div>
-
-    <div class="item">
-        <div class="label">Mira francotirador</div>
-        <div class="bar"><div class="fill" style="width:0%"></div></div>
-        <div class="value">0</div>
-    </div>
-
-    <div class="item">
-        <div class="label">Free Camera</div>
-        <div class="bar"><div class="fill" style="width:1%"></div></div>
-        <div class="value">1</div>
-    </div>
-
-    <!-- PANEL -->
-    <div class="title">🔥 Sensi Panel</div>
-
-    <div class="item">
-        <div class="label">General</div>
-        <div class="bar"><div class="fill" style="width:88%"></div></div>
-        <div class="value">176</div>
-    </div>
-
-    <div class="item">
-        <div class="label">Punto rojo</div>
-        <div class="bar"><div class="fill" style="width:80%"></div></div>
-        <div class="value">160</div>
-    </div>
-
-    <div class="item">
-        <div class="label">Mira 2x</div>
-        <div class="bar"><div class="fill" style="width:95%"></div></div>
-        <div class="value">190</div>
-    </div>
-
-    <div class="item">
-        <div class="label">Mira 4x</div>
-        <div class="bar"><div class="fill" style="width:85%"></div></div>
-        <div class="value">170</div>
-    </div>
-
-    <div class="item">
-        <div class="label">Mira francotirador</div>
-        <div class="bar"><div class="fill" style="width:70%"></div></div>
-        <div class="value">140</div>
-    </div>
-
-    <div class="item">
-        <div class="label">Free Camera</div>
-        <div class="bar"><div class="fill" style="width:90%"></div></div>
-        <div class="value">180</div>
-    </div>
-
+<div id="panel" class="sensi">
+    <h3>🔥 Panel</h3>
+    <p>Config aquí...</p>
 </div>
 
 <script>
-function mostrar() {
-    document.getElementById("menu").style.display = "none";
-    document.getElementById("contenido").style.display = "block";
-}
+function mostrar(id) {
+    // Oculta todos
+    document.querySelectorAll('.sensi').forEach(div => {
+        div.classList.remove('activo');
+    });
 
-function volver() {
-    document.getElementById("menu").style.display = "grid";
-    document.getElementById("contenido").style.display = "none";
+    // Muestra el seleccionado
+    document.getElementById(id).classList.add('activo');
 }
 </script>
 
