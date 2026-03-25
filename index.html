@@ -21,23 +21,15 @@ h1{
     margin-bottom:15px;
 }
 
-input{
-    width:100%;
-    padding:12px;
-    border-radius:10px;
-    border:none;
-    margin-bottom:20px;
-}
-
 /* BOTONES */
 .botones{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:1fr 1fr;
     gap:15px;
 }
 
 button{
-    padding:20px;
+    padding:18px;
     border:none;
     border-radius:15px;
     background:#1e2a44;
@@ -64,14 +56,16 @@ button{
     left:50%;
     transform:translate(-50%,-50%);
     width:90%;
-    max-width:350px;
+    max-width:320px;
     background:#111a2e;
     padding:20px;
     border-radius:15px;
+    text-align:left;
 }
 
-.sensi h3{
-    margin-top:0;
+/* TEXTO */
+.sensi p{
+    margin:6px 0;
 }
 </style>
 </head>
@@ -80,8 +74,6 @@ button{
 
 <div class="container">
     <h1>SENSI ELITE 🔥</h1>
-
-    <input type="text" placeholder="Buscar...">
 
     <div class="botones">
         <button onclick="abrir('free')">Sensi Freestyle</button>
@@ -122,7 +114,7 @@ button{
     <p>Free Camera: 170</p>
 </div>
 
-<!-- 🔥 PANEL CON TU NUEVA SENSI -->
+<!-- 🔥 PANEL (AQUÍ ESTABA EL ERROR) -->
 <div id="panel" class="sensi">
     <h3>🔥 Panel</h3>
     <p>General: 181</p>
@@ -135,18 +127,16 @@ button{
 
 <script>
 function abrir(id){
-    document.querySelectorAll('.sensi').forEach(s=>{
-        s.style.display = 'none';
-    });
+    let todos = document.querySelectorAll('.sensi');
+    todos.forEach(e => e.style.display = 'none');
 
     document.getElementById(id).style.display = 'block';
     document.getElementById('fondo').style.display = 'block';
 }
 
 function cerrar(){
-    document.querySelectorAll('.sensi').forEach(s=>{
-        s.style.display = 'none';
-    });
+    let todos = document.querySelectorAll('.sensi');
+    todos.forEach(e => e.style.display = 'none');
 
     document.getElementById('fondo').style.display = 'none';
 }
