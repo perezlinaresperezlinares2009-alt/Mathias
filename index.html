@@ -1,98 +1,23 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>Sensibilidades</title>
-
-<style>
-body {
-    background: #0b1220;
-    color: white;
-    font-family: Arial;
-    text-align: center;
-}
-
-.botones {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin: 20px;
-}
-
-button {
-    padding: 15px;
-    border-radius: 10px;
-    border: none;
-    background: #1e2a44;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.sensi {
-    display: none;
-    margin-top: 20px;
-    background: #111a2e;
-    padding: 15px;
-    border-radius: 10px;
-}
-
-.activo {
-    display: block;
-}
-</style>
-</head>
-
-<body>
-
-<h2>Configuraciones</h2>
-
-<div class="botones">
-    <button onclick="mostrar('free')">Sensi Freestyle</button>
-    <button onclick="mostrar('suprema')">Sensi Suprema</button>
-    <button onclick="mostrar('lgang')">Sensibilidad L-Gang</button>
-    <button onclick="mostrar('panel')">Sensi Panel</button>
-</div>
-
-<!-- CONTENIDO -->
-
-<div id="free" class="sensi">
-    <h3>🔥 Freestyle</h3>
-    <p>General: 180</p>
-    <p>Punto rojo: 152</p>
-    <p>Mira 2x: 200</p>
-    <p>Mira 4x: 125</p>
-</div>
-
-<div id="suprema" class="sensi">
-    <h3>🔥 Suprema</h3>
-    <p>General: 176</p>
-    <p>Punto rojo: 160</p>
-    <p>Mira 2x: 190</p>
-    <p>Mira 4x: 170</p>
-</div>
-
-<div id="lgang" class="sensi">
-    <h3>🔥 L-Gang</h3>
-    <p>Config aquí...</p>
-</div>
-
-<div id="panel" class="sensi">
-    <h3>🔥 Panel</h3>
-    <p>Config aquí...</p>
-</div>
-
 <script>
+let actual = null;
+
 function mostrar(id) {
-    // Oculta todos
+    const seleccionado = document.getElementById(id);
+
+    // Si ya está abierto, lo cerramos
+    if (actual === id) {
+        seleccionado.classList.remove('activo');
+        actual = null;
+        return;
+    }
+
+    // Ocultar todos
     document.querySelectorAll('.sensi').forEach(div => {
         div.classList.remove('activo');
     });
 
-    // Muestra el seleccionado
-    document.getElementById(id).classList.add('activo');
+    // Mostrar el nuevo
+    seleccionado.classList.add('activo');
+    actual = id;
 }
 </script>
-
-</body>
-</html>
