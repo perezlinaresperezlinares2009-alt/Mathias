@@ -2,158 +2,105 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sensi Elite</title>
+<title>SENSI ELITE</title>
 
 <style>
-body{
-    margin:0;
+body {
+    background: #0b1220;
+    color: white;
     font-family: Arial;
-    background:#0b1220;
-    color:white;
+    text-align: center;
 }
 
-.container{
-    padding:20px;
+button {
+    padding: 15px;
+    margin: 10px;
+    border-radius: 15px;
+    border: none;
+    background: #1e293b;
+    color: white;
+    width: 40%;
 }
 
-h1{
-    margin-bottom:15px;
+.card {
+    margin-top: 20px;
+    padding: 20px;
+    background: #111827;
+    border-radius: 15px;
 }
 
-input{
-    width:100%;
-    padding:12px;
-    border-radius:10px;
-    border:none;
-    margin-bottom:20px;
-}
-
-/* BOTONES */
-.botones{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
-}
-
-button{
-    padding:18px;
-    border:none;
-    border-radius:15px;
-    background:#1e2a44;
-    color:white;
-    font-size:16px;
-}
-
-/* FONDO */
-#fondo{
-    display:none;
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.6);
-}
-
-/* MODAL */
-.sensi{
-    display:none;
-    position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    width:90%;
-    max-width:320px;
-    background:#111a2e;
-    padding:20px;
-    border-radius:15px;
-    text-align:left;
-}
-
-/* TEXTO */
-.sensi p{
-    margin:6px 0;
+.hidden {
+    display: none;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-    <h1>SENSI ELITE 🔥</h1>
+<h1>SENSI ELITE 🔥</h1>
 
-    <input type="text" placeholder="Buscar...">
+<!-- BOTONES -->
+<button onclick="mostrar('dragon')">🐉 DRAGON HEADSHOT</button>
+<button onclick="mostrar('demon')">😈 DEMON AIMLOCK</button>
+<button onclick="mostrar('ghost')">👻 GHOST PRECISION</button>
+<button onclick="mostrar('toxic')">☠️ TOXIC DESTROYER</button>
 
-    <div class="botones">
-        <button onclick="abrir('free')">Sensi Freestyle</button>
-        <button onclick="abrir('suprema')">Sensi Suprema</button>
-        <button onclick="abrir('lgang')">Sensibilidad L-Gang</button>
-        <button onclick="abrir('panel')">Sensi Panel</button>
-    </div>
-</div>
-
-<!-- FONDO -->
-<div id="fondo" onclick="cerrar()"></div>
-
-<!-- SENSIS (TODAS OCULTAS HASTA DAR CLICK) -->
-
-<div id="free" class="sensi">
-    <h3>🔥 Freestyle</h3>
-    <p>General: 180</p>
-    <p>Punto rojo: 152</p>
-    <p>Mira 2x: 200</p>
-    <p>Mira 4x: 125</p>
-</div>
-
-<div id="suprema" class="sensi">
-    <h3>🔥 Suprema</h3>
-    <p>General: 176</p>
-    <p>Punto rojo: 160</p>
-    <p>Mira 2x: 190</p>
-    <p>Mira 4x: 170</p>
-</div>
-
-<div id="lgang" class="sensi">
-    <h3>🔥 L-Gang</h3>
-    <p>General: 180</p>
-    <p>Punto rojo: 185</p>
-    <p>Mira 2x: 150</p>
-    <p>Mira 4x: 175</p>
-    <p>Mira francotirador: 120</p>
-    <p>Free Camera: 170</p>
-</div>
-
-<div id="panel" class="sensi">
-    <h3>🔥 Panel</h3>
-    <p>General: 181</p>
-    <p>Punto rojo: 132</p>
-    <p>Mira 2x: 173</p>
-    <p>Mira 4x: 193</p>
-    <p>Mira francotirador: 93</p>
-    <p>Free Camera: 0</p>
-</div>
+<!-- CONTENEDOR -->
+<div id="contenido" class="card hidden"></div>
 
 <script>
-function abrir(id){
-    // ocultar todos
-    document.querySelectorAll('.sensi').forEach(e=>{
-        e.style.display = 'none';
-    });
+function mostrar(tipo) {
+    let contenido = document.getElementById("contenido");
 
-    // mostrar el seleccionado
-    document.getElementById(id).style.display = 'block';
+    let datos = {
 
-    // mostrar fondo
-    document.getElementById('fondo').style.display = 'block';
-}
+        dragon: `
+        <h2>🐉 DRAGON HEADSHOT</h2>
+        General: 200<br>
+        Red Dot: 71<br>
+        2x: 169<br>
+        4x: 105<br>
+        Franco: 200<br>
+        Cámara: 200<br>
+        DPI: 351
+        `,
 
-function cerrar(){
-    document.querySelectorAll('.sensi').forEach(e=>{
-        e.style.display = 'none';
-    });
+        demon: `
+        <h2>😈 DEMON AIMLOCK</h2>
+        General: 174<br>
+        Red Dot: 45<br>
+        2x: 0<br>
+        4x: 149<br>
+        Franco: 137<br>
+        Cámara: 200<br>
+        DPI: 0
+        `,
 
-    document.getElementById('fondo').style.display = 'none';
+        ghost: `
+        <h2>👻 GHOST PRECISION</h2>
+        General: 146<br>
+        Red Dot: 100<br>
+        2x: 100<br>
+        4x: 100<br>
+        Franco: 100<br>
+        Cámara: 100<br>
+        DPI: 231
+        `,
+
+        toxic: `
+        <h2>☠️ TOXIC DESTROYER</h2>
+        General: 176<br>
+        Red Dot: 166<br>
+        2x: 168<br>
+        4x: 73<br>
+        Franco: 36<br>
+        Cámara: 0<br>
+        DPI: 440
+        `
+    };
+
+    contenido.innerHTML = datos[tipo];
+    contenido.classList.remove("hidden");
 }
 </script>
 
