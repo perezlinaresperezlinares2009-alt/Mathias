@@ -13,213 +13,136 @@ body{
 }
 
 .header{
+    text-align:center;
     padding:15px;
-    font-size:18px;
+    font-size:22px;
     font-weight:bold;
 }
 
-.tabs{
-    display:flex;
-    gap:10px;
-    padding:10px;
-}
-
-.tab{
-    padding:8px 15px;
-    border-radius:20px;
-    background:#1c2b3a;
-    cursor:pointer;
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-    padding:10px;
-}
-
-.btn{
-    background:#1c2b3a;
-    padding:15px;
-    border-radius:15px;
-    text-align:center;
-}
-
-/* PANEL */
-.overlay{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:#000a;
-    display:none;
-    justify-content:center;
-    align-items:center;
-}
-
-.panel{
-    width:90%;
-    max-width:400px;
-    background:#0f2233;
+.container{
     padding:20px;
-    border-radius:20px;
 }
 
-input{
+.sensi{
+    margin-bottom:15px;
+}
+
+.sensi label{
+    display:block;
+    margin-bottom:5px;
+}
+
+.sensi input{
     width:100%;
 }
 
-button{
+/* BOTÓN */
+.guardar-btn{
     width:100%;
-    padding:15px;
-    margin-top:10px;
+    padding:12px;
+    margin-top:20px;
+    background:linear-gradient(90deg,#00ffcc,#00ccff);
     border:none;
     border-radius:10px;
-    background:#19a7ce;
-    color:white;
+    color:black;
+    font-size:16px;
+    font-weight:bold;
+}
+
+/* GUARDADOS */
+.guardados{
+    margin-top:30px;
+    background:#0f2a40;
+    padding:15px;
+    border-radius:10px;
+}
+
+.item{
+    background:#123a55;
+    padding:10px;
+    margin-top:10px;
+    border-radius:8px;
 }
 </style>
-</head>
 
+</head>
 <body>
 
-<div class="header">GG SENSI 🔥</div>
+<div class="header">GG SENSI</div>
 
-<div class="tabs">
-<div class="tab" onclick="mostrar('top')">🔥 Top</div>
-<div class="tab" onclick="mostrar('guardados')">💾 Guardados</div>
-<div class="tab" onclick="vip()">👑 VIP</div>
-</div>
+<div class="container">
 
-<!-- TOP -->
-<div id="top" class="grid">
+    <!-- SENSIBILIDADES -->
+    <div class="sensi">
+        <label>General</label>
+        <input type="range" id="general" min="0" max="100" value="50">
+    </div>
 
-<div class="btn" onclick="abrir('lince')">🐯 Lince FF</div>
-<div class="btn" onclick="abrir('marechal')">👑 Marechal</div>
+    <div class="sensi">
+        <label>Punto rojo</label>
+        <input type="range" id="rojo" min="0" max="100" value="50">
+    </div>
 
-<div class="btn" onclick="abrir('two9')">💀 Two9</div>
-<div class="btn" onclick="abrir('santana')">🔥 Santana</div>
+    <div class="sensi">
+        <label>Mira 2x</label>
+        <input type="range" id="mira2x" min="0" max="100" value="50">
+    </div>
 
-<div class="btn" onclick="abrir('boyka')">💀 Boyka</div>
-<div class="btn" onclick="abrir('ruso')">❄️ Ruso</div>
+    <div class="sensi">
+        <label>Mira 4x</label>
+        <input type="range" id="mira4x" min="0" max="100" value="50">
+    </div>
 
-</div>
+    <!-- BOTÓN -->
+    <button class="guardar-btn" onclick="guardarSensi()">
+        Guardar
+    </button>
 
-<!-- VIP -->
-<div id="vipContent" class="grid" style="display:none">
+    <!-- LISTA GUARDADOS -->
+    <div class="guardados">
+        <h3>Guardados</h3>
+        <div id="lista"></div>
+    </div>
 
-<div class="btn" onclick="abrir('vip1')">🔥 Ultra Pro</div>
-<div class="btn" onclick="abrir('vip2')">⚡ Master Headshot</div>
-
-</div>
-
-<!-- GUARDADOS -->
-<div id="guardados" class="grid" style="display:none">
-<div class="btn">No tienes guardados</div>
-</div>
-
-<!-- PANEL -->
-<div class="overlay" id="panel" onclick="cerrar(event)">
-<div class="panel">
-
-<h3>Ajustes de sensibilidad</h3>
-
-<p>General <span id="g"></span></p>
-<input type="range" max="200" oninput="g.innerText=this.value">
-
-<p>Punto rojo <span id="p"></span></p>
-<input type="range" max="200" oninput="p.innerText=this.value">
-
-<p>Mira 2x <span id="m2"></span></p>
-<input type="range" max="200" oninput="m2.innerText=this.value">
-
-<p>Mira 4x <span id="m4"></span></p>
-<input type="range" max="200" oninput="m4.innerText=this.value">
-
-<p>Mira Franco <span id="mf"></span></p>
-<input type="range" max="200" oninput="mf.innerText=this.value">
-
-<p>Cámara Libre <span id="cl"></span></p>
-<input type="range" max="200" oninput="cl.innerText=this.value">
-
-<h4>Dispositivo</h4>
-<p>DPI: <span id="dpi"></span></p>
-<p>Tamaño Botón: <span id="boton"></span></p>
-
-</div>
 </div>
 
 <script>
+function guardarSensi(){
+    let datos = {
+        general: document.getElementById("general").value,
+        rojo: document.getElementById("rojo").value,
+        mira2x: document.getElementById("mira2x").value,
+        mira4x: document.getElementById("mira4x").value
+    };
 
-// 🔥 SENSIS
-const sensis = {
-lince:[145,124,179,162,101,100,300,55],
-marechal:[175,126,158,175,185,171,499,58],
-two9:[195,70,160,181,27,0,500,36],
-santana:[195,173,158,190,22,84,735,61],
-boyka:[200,96,42,68,54,58,450,44],
-ruso:[200,200,173,163,163,159,1500,100],
+    let guardados = JSON.parse(localStorage.getItem("sensis")) || [];
+    guardados.push(datos);
 
-// VIP
-vip1:[200,180,160,200,70,20,600,60],
-vip2:[190,170,150,195,60,15,550,55]
-};
+    localStorage.setItem("sensis", JSON.stringify(guardados));
 
-function abrir(tipo){
-let s=sensis[tipo];
-let sliders=document.querySelectorAll("input");
-
-g.innerText=s[0]; sliders[0].value=s[0];
-p.innerText=s[1]; sliders[1].value=s[1];
-m2.innerText=s[2]; sliders[2].value=s[2];
-m4.innerText=s[3]; sliders[3].value=s[3];
-mf.innerText=s[4]; sliders[4].value=s[4];
-cl.innerText=s[5]; sliders[5].value=s[5];
-
-dpi.innerText=s[6];
-boton.innerText=s[7];
-
-document.getElementById("panel").style.display="flex";
+    mostrar();
 }
 
-function cerrar(e){
-if(e.target.id==="panel"){
-document.getElementById("panel").style.display="none";
-}
-}
+function mostrar(){
+    let lista = document.getElementById("lista");
+    lista.innerHTML = "";
 
-// 🔥 MOSTRAR SECCIONES (ARREGLADO)
-function mostrar(id){
+    let guardados = JSON.parse(localStorage.getItem("sensis")) || [];
 
-document.getElementById("top").style.display="none";
-document.getElementById("guardados").style.display="none";
-document.getElementById("vipContent").style.display="none";
-
-document.getElementById(id).style.display="grid";
-
-}
-
-// 🔐 VIP FUNCIONANDO
-function vip(){
-
-let pass = prompt("🔐 Ingresa contraseña VIP:");
-
-if(pass === null) return;
-
-if(pass === "44400978"){
-
-mostrar("vipContent");
-
-}else{
-alert("❌ Contraseña incorrecta");
+    guardados.forEach(s => {
+        let div = document.createElement("div");
+        div.className = "item";
+        div.innerHTML = `
+        General: ${s.general} |
+        Rojo: ${s.rojo} |
+        2x: ${s.mira2x} |
+        4x: ${s.mira4x}
+        `;
+        lista.appendChild(div);
+    });
 }
 
-}
-
-// INICIO
-mostrar("top");
-
+mostrar();
 </script>
 
 </body>
