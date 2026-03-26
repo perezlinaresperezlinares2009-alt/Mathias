@@ -23,20 +23,15 @@ h1{margin-top:20px;}
 }
 
 .menu button{
-    padding:10px 15px;
+    padding:10px;
     border:none;
     border-radius:10px;
     background:#1e2d3d;
     color:white;
 }
 
-.box{
-    display:none;
-}
-
-.activo{
-    display:block;
-}
+.box{display:none;}
+.activo{display:block;}
 
 .sensi-btn{
     margin:10px;
@@ -53,9 +48,7 @@ h1{margin-top:20px;}
     border-radius:15px;
 }
 
-input[type=range]{
-    width:80%;
-}
+input[type=range]{width:80%;}
 
 button.guardar{
     margin-top:15px;
@@ -82,8 +75,11 @@ button.guardar{
 
 <!-- TOPS -->
 <div id="tops" class="box activo">
-    <div class="sensi-btn" onclick="cargar('brasil')">🇧🇷 Sensi Brasileña</div>
+    <div class="sensi-btn" onclick="cargar('brasil')">🇧🇷 Brasileña</div>
     <div class="sensi-btn" onclick="cargar('temu')">😈 White Temu</div>
+    <div class="sensi-btn" onclick="cargar('dragon')">🐉 Dragon Headshot</div>
+    <div class="sensi-btn" onclick="cargar('ghost')">👻 Ghost Precision</div>
+    <div class="sensi-btn" onclick="cargar('suprema')">⚡ Suprema Ultra</div>
 </div>
 
 <!-- VIP -->
@@ -91,6 +87,8 @@ button.guardar{
     <div class="sensi-btn" onclick="cargar('lgang')">🔥 L-Gang Pro</div>
     <div class="sensi-btn" onclick="cargar('white')">⚪ White 444</div>
     <div class="sensi-btn" onclick="cargar('hector')">👑 Mr Hector</div>
+    <div class="sensi-btn" onclick="cargar('demon')">😈 Demon Aimlock</div>
+    <div class="sensi-btn" onclick="cargar('toxic')">☠️ Toxic Destroyer</div>
 </div>
 
 <!-- GUARDADOS -->
@@ -124,8 +122,6 @@ button.guardar{
 
 <script>
 
-let vipActivo = false;
-
 function mostrar(id){
     document.querySelectorAll('.box').forEach(e=>e.classList.remove('activo'));
     document.getElementById(id).classList.add('activo');
@@ -134,36 +130,42 @@ function mostrar(id){
 function abrirVIP(){
     let pass = prompt("Contraseña VIP:");
     if(pass==="44400978"){
-        vipActivo=true;
         mostrar('vip');
     }else{
         alert("Contraseña incorrecta");
     }
 }
 
-// SENSIS
+// TODAS LAS SENSIS
 function cargar(tipo){
     let data = {
+        // NUEVAS
         brasil:[195,173,158,190,22,84],
         temu:[198,180,164,184,200,200],
         lgang:[175,86,171,165,158,174],
         white:[156,133,60,118,31,144],
-        hector:[100,100,100,100,100,100]
+        hector:[100,100,100,100,100,100],
+
+        // ANTERIORES
+        dragon:[145,124,179,162,101,100],
+        ghost:[160,140,150,170,90,120],
+        suprema:[200,180,170,190,150,160],
+        demon:[190,170,160,180,140,150],
+        toxic:[185,165,155,175,135,145]
     };
 
     let s = data[tipo];
 
-    document.getElementById("general").value=s[0];
-    document.getElementById("rojo").value=s[1];
-    document.getElementById("m2").value=s[2];
-    document.getElementById("m4").value=s[3];
-    document.getElementById("mf").value=s[4];
-    document.getElementById("camara").value=s[5];
+    general.value=s[0];
+    rojo.value=s[1];
+    m2.value=s[2];
+    m4.value=s[3];
+    mf.value=s[4];
+    camara.value=s[5];
 
     actualizar();
 }
 
-// ACTUALIZAR TEXTO
 document.querySelectorAll("input").forEach(i=>{
     i.addEventListener("input", actualizar);
 });
@@ -179,16 +181,12 @@ function actualizar(){
 
 // GUARDAR
 function guardar(){
-    let datos = `
-    General: ${general.value} |
-    Rojo: ${rojo.value} |
-    2x: ${m2.value} |
-    4x: ${m4.value}
-    `;
-
     let div = document.createElement("div");
     div.className="sensi-btn";
-    div.innerText=datos;
+    div.innerText = `
+    G:${general.value} R:${rojo.value}
+    2x:${m2.value} 4x:${m4.value}
+    `;
 
     document.getElementById("listaGuardados").appendChild(div);
 }
@@ -196,4 +194,4 @@ function guardar(){
 </script>
 
 </body>
-        </html>
+</html>
