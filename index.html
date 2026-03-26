@@ -27,33 +27,26 @@ body{
     margin-bottom:15px;
 }
 
-.sensi label{
-    display:block;
-    margin-bottom:5px;
-}
-
 .sensi input{
     width:100%;
 }
 
 /* BOTÓN */
-.guardar-btn{
+.btn{
     width:100%;
     padding:12px;
-    margin-top:20px;
-    background:linear-gradient(90deg,#00ffcc,#00ccff);
+    margin-top:10px;
     border:none;
     border-radius:10px;
-    color:black;
-    font-size:16px;
+    background:linear-gradient(90deg,#00ffcc,#00ccff);
     font-weight:bold;
 }
 
 /* GUARDADOS */
 .guardados{
-    margin-top:30px;
+    margin-top:20px;
     background:#0f2a40;
-    padding:15px;
+    padding:10px;
     border-radius:10px;
 }
 
@@ -63,86 +56,123 @@ body{
     margin-top:10px;
     border-radius:8px;
 }
+
+/* VIP */
+.vip{
+    margin-top:30px;
+    background:#111;
+    padding:15px;
+    border-radius:10px;
+}
+
+.vip input{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+}
+
+.hidden{
+    display:none;
+}
 </style>
 
 </head>
 <body>
 
-<div class="header">GG SENSI</div>
+<div class="header">GG SENSI 🔥</div>
 
 <div class="container">
 
-    <!-- SENSIBILIDADES -->
-    <div class="sensi">
-        <label>General</label>
-        <input type="range" id="general" min="0" max="100" value="50">
-    </div>
+<!-- SENSIBILIDADES -->
+<div class="sensi"><label>General</label><input type="range" id="general" value="80"></div>
+<div class="sensi"><label>Punto rojo</label><input type="range" id="rojo" value="90"></div>
+<div class="sensi"><label>Mira 2x</label><input type="range" id="mira2x" value="85"></div>
+<div class="sensi"><label>Mira 4x</label><input type="range" id="mira4x" value="80"></div>
+<div class="sensi"><label>AWM</label><input type="range" id="awm" value="70"></div>
+<div class="sensi"><label>Mirilla libre</label><input type="range" id="libre" value="95"></div>
 
-    <div class="sensi">
-        <label>Punto rojo</label>
-        <input type="range" id="rojo" min="0" max="100" value="50">
-    </div>
+<!-- BOTÓN GUARDAR -->
+<button class="btn" onclick="guardar()">Guardar</button>
 
-    <div class="sensi">
-        <label>Mira 2x</label>
-        <input type="range" id="mira2x" min="0" max="100" value="50">
-    </div>
+<!-- GUARDADOS -->
+<div class="guardados">
+    <h3>Guardados</h3>
+    <div id="lista"></div>
+</div>
 
-    <div class="sensi">
-        <label>Mira 4x</label>
-        <input type="range" id="mira4x" min="0" max="100" value="50">
-    </div>
+<!-- ZONA VIP -->
+<div class="vip">
+    <h3>Zona VIP 🔒</h3>
+    <input type="password" id="pass" placeholder="Contraseña">
+    <button class="btn" onclick="entrarVIP()">Entrar</button>
 
-    <!-- BOTÓN -->
-    <button class="guardar-btn" onclick="guardarSensi()">
-        Guardar
-    </button>
-
-    <!-- LISTA GUARDADOS -->
-    <div class="guardados">
-        <h3>Guardados</h3>
-        <div id="lista"></div>
+    <div id="vipContenido" class="hidden">
+        <h4>Sensis PRO 🔥</h4>
+        <p>General: 100 | Rojo: 100 | 2x: 95 | 4x: 90 | AWM: 80 | Libre: 100</p>
     </div>
+</div>
 
 </div>
 
 <script>
-function guardarSensi(){
+
+// GUARDAR SENSI
+function guardar(){
     let datos = {
-        general: document.getElementById("general").value,
-        rojo: document.getElementById("rojo").value,
-        mira2x: document.getElementById("mira2x").value,
-        mira4x: document.getElementById("mira4x").value
+        general: general.value,
+        rojo: rojo.value,
+        mira2x: mira2x.value,
+        mira4x: mira4x.value,
+        awm: awm.value,
+        libre: libre.value
     };
 
-    let guardados = JSON.parse(localStorage.getItem("sensis")) || [];
-    guardados.push(datos);
+    let lista = JSON.parse(localStorage.getItem("sensis")) || [];
+    lista.push(datos);
 
-    localStorage.setItem("sensis", JSON.stringify(guardados));
+    localStorage.setItem("sensis", JSON.stringify(lista));
 
     mostrar();
 }
 
+// MOSTRAR GUARDADOS
 function mostrar(){
-    let lista = document.getElementById("lista");
-    lista.innerHTML = "";
+    let cont = document.getElementById("lista");
+    cont.innerHTML = "";
 
-    let guardados = JSON.parse(localStorage.getItem("sensis")) || [];
+    let lista = JSON.parse(localStorage.getItem("sensis")) || [];
 
-    guardados.forEach(s => {
+    lista.forEach(s=>{
         let div = document.createElement("div");
-        div.className = "item";
+        div.className="item";
         div.innerHTML = `
-        General: ${s.general} |
-        Rojo: ${s.rojo} |
-        2x: ${s.mira2x} |
-        4x: ${s.mira4x}
+        G:${s.general} | R:${s.rojo} | 2x:${s.mira2x} | 4x:${s.mira4x} | AWM:${s.awm} | L:${s.libre}
         `;
-        lista.appendChild(div);
+        cont.appendChild(div);
     });
 }
 
 mostrar();
+
+// VIP CON INTENTOS INFINITOS
+function entrarVIP(){
+    let pass = document.getElementById("pass").value;
+
+    if(pass === "44400978"){
+        document.getElementById("vipContenido").classList.remove("hidden");
+        localStorage.setItem("vip","true");
+        alert("Acceso VIP concedido 🔥");
+    } else {
+        alert("Contraseña incorrecta ❌");
+        // intentos infinitos (no hay límite)
+    }
+}
+
+// MANTENER VIP ABIERTO
+if(localStorage.getItem("vip") === "true"){
+    document.getElementById("vipContenido").classList.remove("hidden");
+}
+
 </script>
 
 </body>
