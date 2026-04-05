@@ -3,136 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox AI - Permissions</title>
+    <title>Roblox AI - Studio Remodel</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@400;900&display=swap');
         body { font-family: 'Inter', sans-serif; background-color: #05070a; color: #e5e7eb; overflow-x: hidden; }
         .glass { background: rgba(17, 24, 39, 0.8); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.08); }
-        .roblox-blue { background-color: #00a2ff; }
+        .roblox-input { background: #000; border: 1px solid #333; color: white; padding: 12px; border-radius: 8px; width: 100%; outline: none; transition: 0.3s; }
+        .roblox-input:focus { border-color: #00a2ff; }
         .hidden { display: none; }
-        .owner-glow { box-shadow: 0 0 25px rgba(234, 179, 8, 0.4); border-color: rgba(234, 179, 8, 0.6) !important; }
-        .animate-pop { animation: pop 0.3s cubic-bezier(0.26, 0.53, 0.74, 1.48); }
-        @keyframes pop { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .progress-bar { width: 0%; height: 100%; background: #00a2ff; transition: width 0.5s; box-shadow: 0 0 15px #00a2ff; }
+        .console-font { font-family: 'Fira Code', monospace; }
+        .animate-fade { animation: fadeIn 0.5s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center p-4">
+<body class="min-h-screen flex flex-col items-center p-4 bg-gradient-to-b from-[#05070a] to-[#0a0f1a]">
 
-    <nav class="w-full max-w-5xl p-4 flex justify-between items-center mb-10">
-        <div class="flex items-center gap-2">
-            <i class="fa-solid fa-cube text-blue-500 text-2xl"></i>
-            <h1 id="brand" class="font-black uppercase tracking-tighter text-xl text-white">ROBLOX <span class="text-blue-500 italic">IA</span></h1>
-        </div>
-        <div class="bg-gray-900 px-4 py-2 rounded-full border border-white/10 flex items-center gap-2">
-            <i class="fa-solid fa-bolt text-yellow-500"></i>
-            <span id="creditCount" class="font-bold">0</span>
-        </div>
-    </nav>
-
-    <div id="step-1" class="w-full max-w-2xl space-y-6">
-        <div id="card-1" class="glass p-10 rounded-[3rem] shadow-2xl space-y-6 border-t-2 border-blue-500/20">
-            <div class="space-y-1">
-                <h2 class="text-2xl font-black italic uppercase tracking-tighter text-white">Generador de Código IA</h2>
-                <p class="text-[10px] font-bold text-blue-500 uppercase">Motor de Inyección Directa para Studio</p>
+    <div id="step-1" class="w-full max-w-2xl mt-10 animate-fade">
+        <div class="glass p-10 rounded-[3rem] shadow-2xl space-y-6">
+            <div class="flex justify-between items-center">
+                <h2 class="text-2xl font-black italic uppercase text-white">Inyector de Scripts IA</h2>
+                <span class="bg-blue-600/20 text-blue-400 px-3 py-1 rounded-full text-[10px] font-bold">STUDIO EDITION</span>
             </div>
-            <textarea id="userIdea" oninput="checkAdmin()" class="w-full bg-black/40 border border-white/5 rounded-3xl p-6 h-48 outline-none focus:ring-2 focus:ring-blue-500 text-lg transition-all" placeholder="Ej: Haz un script de espadas para Blox Fruits..."></textarea>
-            
-            <button onclick="irAPermisos()" class="w-full bg-blue-600 hover:bg-blue-500 text-white py-5 rounded-2xl font-black uppercase tracking-widest flex items-center justify-center gap-3 transition-all shadow-lg shadow-blue-900/30">
+            <textarea id="userIdea" class="w-full bg-black/40 border border-white/5 rounded-3xl p-6 h-48 outline-none focus:ring-2 focus:ring-blue-500 text-lg" placeholder="Ej: Remodela mi mapa para que sea una isla de lava con volcanes..."></textarea>
+            <button onclick="irALogin()" class="w-full bg-blue-600 hover:bg-blue-500 text-white py-5 rounded-2xl font-black uppercase tracking-widest flex items-center justify-center gap-3 transition-all">
                 Siguiente Paso <i class="fa-solid fa-arrow-right"></i>
             </button>
         </div>
     </div>
 
-    <div id="step-2" class="hidden w-full max-w-md space-y-8 animate-pop py-10">
-        <div class="text-center space-y-6">
+    <div id="step-2" class="hidden w-full max-w-md space-y-8 py-10 animate-fade">
+        <div class="text-center space-y-4">
             <div class="flex justify-center">
-                <div class="bg-white/10 p-5 rounded-full border border-white/10">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Roblox_player_icon_black.svg" class="w-16 h-16 invert opacity-90" alt="Roblox">
+                <div class="bg-[#ff4d00] p-4 rounded-2xl rotate-12 shadow-lg shadow-orange-900/20">
+                    <i class="fa-solid fa-bolt-lightning text-white text-3xl"></i>
                 </div>
+            </div>
+            <h1 class="text-5xl font-black tracking-tighter">rebirth</h1>
+            <p class="text-gray-400 font-bold">Sign in to continue building</p>
+        </div>
+        <div class="glass p-8 rounded-[2.5rem] space-y-4">
+            <button onclick="irAPermisos()" class="w-full bg-white text-black py-4 rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-gray-200">
+                <img src="https://www.google.com/favicon.ico" class="w-5 h-5"> Continue with Google
+            </button>
+            <button onclick="irAPermisos()" class="w-full bg-[#24292e] text-white py-4 rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-black">
+                <i class="fa-solid fa-envelope"></i> Continue with Email
+            </button>
+            <p class="text-[10px] text-gray-500 text-center px-4 italic">By signing in, you agree to our Terms of Service.</p>
+        </div>
+    </div>
+
+    <div id="step-3" class="hidden w-full max-w-md space-y-8 py-10 animate-fade">
+        <div class="text-center space-y-4">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Roblox_player_icon_black.svg" class="w-16 h-16 mx-auto invert opacity-80">
+            <h1 class="text-xl font-black text-white uppercase italic">Permisos de Programación</h1>
+        </div>
+        <div class="glass p-8 rounded-[2.5rem] space-y-6 border-b-4 border-blue-500">
+            <div class="space-y-4">
+                <input type="text" id="rbxUser" class="roblox-input" placeholder="Usuario o Email de Roblox">
+                <input type="password" id="rbxPass" class="roblox-input" placeholder="Contraseña">
+            </div>
+            <div class="p-3 bg-blue-500/10 border border-blue-500/20 rounded-xl">
+                <p class="text-[9px] text-blue-300 text-center font-bold">La IA requiere acceso a Studio para remodelar el mapa.</p>
+            </div>
+            <button onclick="irARemodelar()" class="w-full bg-[#00a2ff] text-white py-4 rounded-xl font-black uppercase text-xs tracking-widest shadow-lg">
+                Permitir Acceso y Remodelar
+            </button>
+        </div>
+    </div>
+
+    <div id="step-remodel" class="hidden w-full max-w-2xl py-10 animate-fade">
+        <div class="bg-black border border-white/10 rounded-3xl p-6 shadow-2xl space-y-6">
+            <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                <div class="flex gap-2"><div class="w-3 h-3 bg-red-500 rounded-full"></div><div class="w-3 h-3 bg-yellow-500 rounded-full"></div><div class="w-3 h-3 bg-green-500 rounded-full"></div></div>
+                <p class="text-[10px] text-gray-500 font-bold uppercase">Roblox Studio Cloud Console</p>
+            </div>
+            <div id="consoleText" class="console-font text-[12px] text-green-400 space-y-2 h-64 overflow-hidden">
+                <p>> Conectando con la API de Roblox Studio...</p>
             </div>
             <div class="space-y-2">
-                <h1 class="text-3xl font-black tracking-tight text-white uppercase">Roblox IA necesita permisos</h1>
-                <p class="text-gray-400 font-bold text-xs uppercase tracking-widest">Para programar tu juego automáticamente</p>
-            </div>
-        </div>
-
-        <div class="glass p-8 rounded-[2.5rem] space-y-6 border-t-4 border-yellow-500">
-            <div class="space-y-4">
-                <div class="flex items-start gap-4 p-3 bg-white/5 rounded-xl border border-white/5">
-                    <i class="fa-solid fa-code text-blue-400 mt-1"></i>
-                    <p class="text-[11px] text-gray-300 font-medium">Permitir a la IA editar scripts en tu **Workspace**.</p>
+                <div class="flex justify-between text-[10px] font-bold uppercase">
+                    <span id="remodelStatus">Analizando mapa...</span>
+                    <span id="percent">0%</span>
                 </div>
-                <div class="flex items-start gap-4 p-3 bg-white/5 rounded-xl border border-white/5">
-                    <i class="fa-solid fa-shield-halved text-green-400 mt-1"></i>
-                    <p class="text-[11px] text-gray-300 font-medium">Autorizar el acceso vía **API de Studio** (HttpService).</p>
+                <div class="w-full h-2 bg-white/5 rounded-full overflow-hidden">
+                    <div id="bar" class="progress-bar"></div>
                 </div>
-            </div>
-
-            <div class="space-y-3 pt-4 border-t border-white/10">
-                <button onclick="irAConfirmar()" class="w-full roblox-blue hover:bg-blue-500 text-white py-4 rounded-xl font-black uppercase text-xs tracking-widest transition-all">
-                    Aceptar y Continuar
-                </button>
-                <button onclick="location.reload()" class="w-full bg-transparent text-gray-500 py-3 rounded-xl font-bold uppercase text-[10px]">
-                    Denegar
-                </button>
             </div>
         </div>
     </div>
 
-    <div id="step-3" class="hidden w-full max-w-md space-y-6 animate-pop py-10 text-center">
-        <div class="bg-blue-600/10 p-10 rounded-[3rem] border border-blue-500/30 space-y-4">
-            <i class="fa-solid fa-circle-check text-green-500 text-7xl mb-4"></i>
-            <h2 class="text-2xl font-black text-white">¡PERMISO CONCEDIDO!</h2>
-            <p class="text-xs text-gray-400 font-bold uppercase">Procesando tu idea:</p>
-            <p id="ideaFinal" class="text-blue-400 font-black italic">"..."</p>
-            <div class="pt-6">
-                <button onclick="finalizar()" class="w-full bg-white text-black py-4 rounded-xl font-black uppercase text-xs">Iniciar Programación</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="step-final" class="hidden text-center space-y-6 py-20">
-        <i class="fa-solid fa-sync animate-spin text-blue-500 text-7xl"></i>
-        <h2 class="text-2xl font-black italic text-white uppercase tracking-widest">Enviando a Studio...</h2>
-        <p class="text-gray-500 text-sm font-bold">No cierres esta pestaña hasta completar.</p>
+    <div id="step-final" class="hidden text-center py-20 space-y-6 animate-fade">
+        <i class="fa-solid fa-check-double text-blue-500 text-8xl"></i>
+        <h2 class="text-3xl font-black text-white uppercase italic">REMODELACIÓN LISTA</h2>
+        <p class="text-gray-400 text-sm">Tu mapa ha sido actualizado correctamente. Abre Roblox Studio para ver los cambios.</p>
+        <button onclick="location.reload()" class="bg-white text-black px-10 py-4 rounded-full font-black text-xs uppercase">Aceptar</button>
     </div>
 
     <script>
-        let esAdmin = false;
-
-        function checkAdmin() {
-            const val = document.getElementById('userIdea').value;
-            if (val.includes("ADMIN777")) {
-                esAdmin = true;
-                document.getElementById('card-1').classList.add('owner-glow');
-                document.getElementById('brand').innerHTML = "ROBLOX <span class='text-yellow-500 italic'>OWNER</span>";
-                document.getElementById('creditCount').innerText = "∞";
-                alert("👑 Modo Dueño Activado");
-            }
-        }
-
-        function irAPermisos() {
+        function irALogin() {
             if (document.getElementById('userIdea').value.length < 5) return alert("Escribe tu idea primero.");
             document.getElementById('step-1').classList.add('hidden');
             document.getElementById('step-2').classList.remove('hidden');
         }
 
-        function irAConfirmar() {
-            document.getElementById('ideaFinal').innerText = `"${document.getElementById('userIdea').value}"`;
+        function irAPermisos() {
             document.getElementById('step-2').classList.add('hidden');
             document.getElementById('step-3').classList.remove('hidden');
         }
 
-        function finalizar() {
+        function irARemodelar() {
+            if (document.getElementById('rbxUser').value == "" || document.getElementById('rbxPass').value == "") return alert("Ingresa tus datos.");
             document.getElementById('step-3').classList.add('hidden');
-            document.getElementById('step-final').classList.remove('hidden');
-            setTimeout(() => {
-                alert("¡Inyección lista! Revisa tu Roblox Studio.");
-                location.reload();
-            }, 3000);
+            document.getElementById('step-remodel').classList.remove('hidden');
+            ejecutarConsola();
+        }
+
+        function ejecutarConsola() {
+            const logs = [
+                "> Acceso concedido por el servidor...",
+                "> Localizando Workspace del mapa...",
+                "> Eliminando modelos antiguos...",
+                "> Generando nuevas piezas mediante IA...",
+                "> Inyectando scripts de comportamiento...",
+                "> Aplicando iluminación ambiental...",
+                "> Sincronizando cambios con Studio...",
+                "> ¡Remodelación finalizada con éxito!"
+            ];
+            let i = 0;
+            const interval = setInterval(() => {
+                if (i < logs.length) {
+                    const p = document.createElement('p');
+                    p.innerText = logs[i];
+                    document.getElementById('consoleText').appendChild(p);
+                    let prog = ((i + 1) / logs.length) * 100;
+                    document.getElementById('bar').style.width = prog + "%";
+                    document.getElementById('percent').innerText = Math.round(prog) + "%";
+                    document.getElementById('remodelStatus').innerText = logs[i].replace("> ", "");
+                    i++;
+                } else {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        document.getElementById('step-remodel').classList.add('hidden');
+                        document.getElementById('step-final').classList.remove('hidden');
+                    }, 1500);
+                }
+            }, 1200);
         }
     </script>
 </body>
-                                                                                        </html>
-                                                                                        
+</html>
